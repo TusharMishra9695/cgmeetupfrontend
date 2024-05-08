@@ -2,9 +2,12 @@
 import styles from "../page.module.css";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 import { postAPI } from "@/utils/apiCalls";
 export default function page() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -12,6 +15,13 @@ export default function page() {
     control,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    if (token) {
+      router.push("/dashboard");
+    }
+  }, []);
   async function onSubmit(item) {
     try {
       postAPI("http://localhost:5000/api/signup", item);
@@ -68,6 +78,14 @@ export default function page() {
               placeholder="Phone Number"
               {...register("phoneNumber", {
                 required: "This field is required*",
+                maxLength: {
+                  value: 10,
+                  message: "Max 10 numbers allowed ",
+                },
+                minLength: {
+                  value: 10,
+                  message: "Enter correct number",
+                },
               })}
             />
           </div>

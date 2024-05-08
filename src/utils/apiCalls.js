@@ -2,9 +2,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export async function getAPI(url) {
+export async function getAPI(url, token) {
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+      },
+    });
     return response.data;
   } catch (e) {
     toast.error(err.message, { autoClose: 1000 });

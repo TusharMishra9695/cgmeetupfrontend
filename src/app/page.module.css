@@ -21,3 +21,41 @@
   border-radius: 4px;
   box-sizing: border-box;
 }
+.headers {
+  background-color: rgb(204, 199, 199);
+  height: 80px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+}
+.logout {
+  background-color: rgb(206, 203, 203);
+  color: white;
+}
+.icon_flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+.follow_btn {
+  padding: 8px 12px;
+  font-size: 15px;
+  background-color: rgb(249, 53, 53);
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+.user_icon {
+  margin-top: 8px;
+}
+.card {
+  padding: 20px;
+  background-color: #ccc;
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}

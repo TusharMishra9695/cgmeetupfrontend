@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { postAPI } from "@/utils/apiCalls";
 
@@ -15,6 +16,13 @@ export default function Home() {
     control,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    if (token) {
+      router.push("/dashboard");
+    }
+  }, []);
   async function onSubmit(item) {
     try {
       let result = await postAPI("http://localhost:5000/api/signin", item);
