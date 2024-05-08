@@ -2,15 +2,23 @@
 import styles from "../page.module.css";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { ToastContainer } from "react-toastify";
+import { postAPI } from "@/utils/apiCalls";
 export default function page() {
   const {
     register,
     handleSubmit,
+    reset,
     control,
     formState: { errors },
   } = useForm();
   async function onSubmit(item) {
-    console.log(item, "item kya hai");
+    try {
+      postAPI("http://localhost:5000/api/signup", item);
+      reset();
+    } catch (e) {
+      console.log(e, "some thing went wrong");
+    }
   }
 
   return (
@@ -83,6 +91,7 @@ export default function page() {
           </h1>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }
